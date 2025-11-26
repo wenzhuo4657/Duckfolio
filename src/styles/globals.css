@@ -88,52 +88,7 @@
   transition: none !important;
 }
 
-/* 自定义光标样式 */
-.custom-cursor,
-.custom-cursor * {
-  cursor: none !important;
-}
-
-.cursor-dot {
-  position: fixed;
-  z-index: 9999;
-  pointer-events: none;
-  width: 8px;
-  height: 8px;
-  background-color: var(--theme-primary);
-  border-radius: 50%;
-  will-change: transform;
-  filter: drop-shadow(0 0 4px var(--theme-primary, 0.5));
-}
-
-.cursor-ring {
-  position: fixed;
-  z-index: 9998;
-  pointer-events: none;
-  width: 32px;
-  height: 32px;
-  border: 1.5px solid var(--theme-primary);
-  border-radius: 50%;
-  will-change: transform;
-  transition: opacity 200ms ease;
-}
-
-.dark .cursor-dot {
-  background-color: var(--theme-secondary);
-}
-
-.dark .cursor-ring {
-  border-color: var(--theme-secondary);
-}
-
-/* 手机和平板设备不显示自定义光标 */
-@media (max-width: 768px) {
-  .cursor-dot,
-  .cursor-ring {
-    display: none;
-  }
-  .custom-cursor,
-  .custom-cursor * {
-    cursor: auto !important;
-  }
+/* 使用默认系统光标 */
+body {
+  cursor: auto;
 }
