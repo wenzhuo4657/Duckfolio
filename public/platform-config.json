@@ -7,7 +7,15 @@
   "projectSections": [
     {
       "id": "projects",
-      "projects": [],
+      "projects": [
+        {
+          "description": "管理个人生活",
+          "icon": "Github",
+          "id": "project-msu3rfrw",
+          "title": "fluxflow",
+          "url": "https://github.com/wenzhuo4657/FluxFlow"
+        }
+      ],
       "title": "Projects"
     }
   ],
