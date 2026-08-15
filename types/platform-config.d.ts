@@ -12,6 +12,20 @@ export interface WebsiteLink {
   description?: string;
 }
 
+export interface ProjectLink {
+  id: string;
+  title: string;
+  url: string;
+  description?: string;
+  icon?: string;
+}
+
+export interface ProjectSection {
+  id: string;
+  title: string;
+  projects: ProjectLink[];
+}
+
 export interface Profile {
   avatar: string;
   name: string;
@@ -20,6 +34,7 @@ export interface Profile {
 
 export interface ProfileConfig {
   profile: Profile;
+  projectSections?: ProjectSection[];
   socialLinks: SocialLink[];
   websiteLinks: WebsiteLink[];
 }

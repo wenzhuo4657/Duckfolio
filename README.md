@@ -47,10 +47,81 @@
 
 ## 🚀 快速开始
 
-### 部署到 Cloudflare Pages
+### 1. 克隆仓库
 
-要想部署到 Cloudflare Pages，请参阅该文档：[将 Duckfolio 部署到 Cloudflare Pages](docs/deploy-to-cloudflare-pages.md)
+```bash
+git clone https://github.com/Yorlg/Duckfolio.git
+cd duckfolio
 
-### 部署到 Vercel
+# 安装依赖
+pnpm install
 
-要想部署到 Vercel，请参阅该文档：[将 Duckfolio 部署到 Vercel](docs/deploy-to-vercel.md)
+# 项目打包
+pnpm build
+
+# 启动服务器
+pnpm dev
+```
+
+本地访问：
+
+- 站点首页：`http://localhost:3000`
+- 管理后台：`http://localhost:3000/admin`
+
+## 后台配置
+
+真实密钥不要提交到仓库，也不要放到 `NEXT_PUBLIC_*` 变量里。生产环境请在部署平台的 Environment Variables / Secrets 中配置：
+
+```bash
+GITHUB_TOKEN=your_github_token
+GITHUB_REPO=owner/repo
+GITHUB_BRANCH=deploy
+ADMIN_PASSWORD=your_admin_password
+```
+
+可选 AI 配置：
+
+```bash
+AI_GATEWAY_API_KEY=your_ai_api_key
+AI_BASE_URL=https://api.openai.com/v1
+AI_MODEL=gpt-4o-mini
+```
+
+说明：
+
+- `GITHUB_BRANCH` 未配置时默认使用 `deploy`。
+- `GITHUB_TOKEN` 建议使用 Fine-grained token，只给目标仓库 `Contents: Read and write` 权限。
+- 没有 GitHub 写入配置时，后台不会在本地 `main` 工作区创建或删除 `posts` 目录。
+- 本地开发可以复制 `.env.example` 为 `.env.local`，`.env*` 文件已被忽略，只有 `.env.example` 会提交。
+
+## 发布机制
+
+点击 `/admin` 的发布或更新后，服务端接口会把文章写入：
+
+```text
+posts/{slug}.md
+```
+
+文章文件会提交到 `GITHUB_REPO` 的 `GITHUB_BRANCH`。建议你自己使用 `deploy` 分支存放文章，这样别人 fork 或使用 `main` 分支时不会同步你的个人文章。
+
+## 部署
+
+当前支持 Vercel 和 ~~Cloudflare Workers~~。详细说明见：
+
+- [docs/deploy-to-Vercel.md](docs/deploy-to-Vercel.md)
+- ~~[docs/deploy-to-Cloudflare.md](docs/deploy-to-Cloudflare.md)~~
+
+关键要求：
+
+- 部署平台必须支持 Next.js 服务端 API。
+- 生产分支应与 `GITHUB_BRANCH` 保持一致，例如都使用 `deploy`。
+- ~~Cloudflare 不能使用纯静态导出，需要使用 Workers / OpenNext 方式部署。~~
+
+## 常用命令
+
+```bash
+pnpm dev
+pnpm build
+pnpm start
+```
+

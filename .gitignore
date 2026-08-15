@@ -2,6 +2,7 @@
 
 # 依赖
 /node_modules
+/.pnpm-store/
 /.pnp
 .pnp.js
 /.yarn
@@ -15,8 +16,6 @@
 
 # 生产环境
 /build
-/.vercel/
-/.wrangler/
 
 # 其他
 .DS_Store
@@ -28,6 +27,9 @@ yarn-debug.log*
 yarn-error.log*
 
 # 本地环境变量
+.env
+.env.*
+!.env.example
 .env*.local
 
 # VS Code
@@ -39,3 +41,9 @@ yarn-error.log*
 
 # WebStorm
 .idea
+
+# 文章数据 - 仅在 main 分支忽略,deploy 分支需要包含
+/posts/
+
+# Local Codex dev server logs
+.codex-next-dev.*

@@ -2,23 +2,22 @@ import type React from 'react';
 import '../styles/globals.css';
 import { getConfig } from '@/lib/config';
 import type { Metadata } from 'next';
-import { Inter } from 'next/font/google';
 import { ThemeProvider } from '@/components/theme/theme-provider';
 import { ModeToggle } from '@/components/theme/toggle-theme';
+// import { CustomCursor } from '@/components/interactive/custom-cursor';
+import { RootLayoutClient } from '@/components/layout/RootLayoutClient';
 
-const inter = Inter({ subsets: ['latin'] });
-
-export function generateMetadata(): Promise<Metadata> {
+export function generateMetadata(): Metadata {
   const config = getConfig();
 
-  return Promise.resolve({
+  return {
     title: config.profile.name,
     description: config.profile.bio,
     icons: {
       icon: '/logo.png',
       shortcut: '/logo.png',
     },
-  });
+  };
 }
 
 export default function RootLayout({
@@ -28,9 +27,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="zh-CN" className="h-full" suppressHydrationWarning>
-      <body
-        className={`${inter.className} h-full bg-background text-foreground`}
-      >
+      <body className="h-full bg-background text-foreground">
         <ThemeProvider
           attribute="class"
           defaultTheme="system"
@@ -38,7 +35,8 @@ export default function RootLayout({
           disableTransitionOnChange
         >
           <ModeToggle />
-          {children}
+          {/* <CustomCursor /> */}
+          <RootLayoutClient>{children}</RootLayoutClient>
         </ThemeProvider>
       </body>
     </html>
