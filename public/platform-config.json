@@ -7,15 +7,7 @@
   "projectSections": [
     {
       "id": "projects",
-      "projects": [
-        {
-          "description": "基于 xterm.js 开发的 Web SSH 终端。",
-          "icon": "TerminalSquare",
-          "id": "webssh",
-          "title": "WebSSH",
-          "url": "https://github.com/Yorlg/WebSSH"
-        }
-      ],
+      "projects": [],
       "title": "Projects"
     }
   ],
